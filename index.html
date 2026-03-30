@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schoonheidssalon De Bron</title>
+    <style>
+        /* Algemene opmaak */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #4a4a4a;
+            background-color: #faf8f5; /* Zachte, warme achtergrondkleur */
+            line-height: 1.6;
+        }
+
+        /* Header en Navigatie */
+        header {
+            background-color: #e6dace; /* Zandkleur */
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            color: #5a4b41;
+            font-size: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+        header p {
+            color: #7a6a5d;
+            font-style: italic;
+        }
+        nav {
+            background-color: #d4c4b7;
+            display: flex;
+            justify-content: center;
+            padding: 1rem;
+            flex-wrap: wrap;
+        }
+        nav a {
+            margin: 0.5rem 1.5rem;
+            text-decoration: none;
+            color: #5a4b41;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+        nav a:hover {
+            color: #ffffff;
+        }
+
+        /* Content secties */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .hero {
+            text-align: center;
+            padding: 3rem 1rem;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            margin-bottom: 2rem;
+        }
+        
+        .services {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+        .service-card {
+            background: #ffffff;
+            padding: 2rem;
+            flex: 1;
+            min-width: 250px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            text-align: center;
+        }
+        .service-card h3 {
+            color: #5a4b41;
+        }
+
+        /* Footer met je portfolio link */
+        footer {
+            background-color: #5a4b41;
+            color: #e6dace;
+            text-align: center;
+            padding: 2rem;
+            position: relative; /* Nodig voor de absolute positionering van de link */
+            margin-top: 3rem;
+        }
+        
+        /* Jouw verborgen linkje */
+        .portfolio-link {
+            position: absolute;
+            bottom: 8px;
+            right: 15px;
+            font-size: 0.65em;
+            color: #a3968d; /* Subtiele kleur die wegvalt in de achtergrond */
+            text-decoration: none;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+        }
+        .portfolio-link:hover {
+            opacity: 1;
+            color: #ffffff;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Schoonheidssalon De Bron</h1>
+        <p>Even helemaal tot rust komen</p>
+    </header>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#behandelingen">Behandelingen</a>
+        <a href="#over">Over Mij</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="container">
+        <section id="home" class="hero">
+            <h2>Welkom bij De Bron</h2>
+            <p>Ontdek de ultieme ontspanning en verzorging. Bij Schoonheidssalon De Bron staat persoonlijke aandacht centraal. Neem de tijd voor jezelf en laat je huid weer stralen in een oase van rust.</p>
+        </section>
+
+        <section id="behandelingen" class="services">
+            <div class="service-card">
+                <h3>Gezichtsbehandeling</h3>
+                <p>Een complete reiniging en verzorging afgestemd op jouw huidtype, inclusief een ontspannende massage.</p>
+            </div>
+            <div class="service-card">
+                <h3>Massages</h3>
+                <p>Laat spanningen los met een heerlijke, uitgebreide nek-, schouder- of lichaamsmassage.</p>
+            </div>
+            <div class="service-card">
+                <h3>Manicure & Pedicure</h3>
+                <p>Verzorgde handen en voeten met prachtige, langhoudende lak en verzachtende crèmes.</p>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div id="contact">
+            <p><strong>Schoonheidssalon De Bron</strong></p>
+            <p>Voorbeeldstraat 123, 1234 AB Plaatsnaam</p>
+            <p>Email: info@salon-de-bron.nl | Tel: 06 1234 5678</p>
+        </div>
+        
+        <a href="https://littendekitten.github.io/Portfolio" target="_blank" class="portfolio-link">Website door littendekitten</a>
+    </footer>
+
+</body>
+</html>
