@@ -4,34 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Schoonheidssalon De Bron</title>
+    <script src="https://js.stripe.com/v3/"></script>
     <style>
-        /* Algemene opmaak */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
             color: #4a4a4a;
-            background-color: #faf8f5; /* Zachte, warme achtergrondkleur */
+            background-color: #faf8f5;
             line-height: 1.6;
         }
 
-        /* Header en Navigatie */
+        /* ---- HEADER & NAV ---- */
         header {
-            background-color: #e6dace; /* Zandkleur */
+            background-color: #e6dace;
             padding: 3rem 2rem;
             text-align: center;
         }
         header h1 {
-            margin: 0;
             color: #5a4b41;
             font-size: 2.5rem;
             font-weight: 300;
             letter-spacing: 2px;
         }
-        header p {
-            color: #7a6a5d;
-            font-style: italic;
-        }
+        header p { color: #7a6a5d; font-style: italic; margin-top: 0.5rem; }
+
         nav {
             background-color: #d4c4b7;
             display: flex;
@@ -46,18 +43,23 @@
             font-weight: bold;
             text-transform: uppercase;
             font-size: 0.9rem;
-            transition: color 0.3s ease;
+            transition: color 0.3s;
+            cursor: pointer;
         }
-        nav a:hover {
-            color: #ffffff;
-        }
+        nav a:hover { color: #ffffff; }
 
-        /* Content secties */
+        /* ---- PAGINA SYSTEEM ---- */
+        .pagina { display: none; }
+        .pagina.actief { display: block; }
+
+        /* ---- CONTAINER ---- */
         .container {
             max-width: 1000px;
             margin: 0 auto;
             padding: 2rem;
         }
+
+        /* ---- HOMEPAGE ---- */
         .hero {
             text-align: center;
             padding: 3rem 1rem;
@@ -66,12 +68,14 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.03);
             margin-bottom: 2rem;
         }
-        
+        .hero h2 { color: #5a4b41; margin-bottom: 1rem; }
+
         .services {
             display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
             gap: 1.5rem;
+            margin-bottom: 2rem;
         }
         .service-card {
             background: #ffffff;
@@ -82,36 +86,226 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.03);
             text-align: center;
         }
-        .service-card h3 {
+        .service-card h3 { color: #5a4b41; }
+
+        /* Banner met knop naar abonnementenpagina */
+        .abonnement-banner {
+            background: linear-gradient(135deg, #e6dace 0%, #d4c4b7 100%);
+            border-radius: 12px;
+            padding: 2.5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .abonnement-banner h3 {
             color: #5a4b41;
+            font-size: 1.4rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+        .abonnement-banner p {
+            color: #7a6a5d;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+        .knop-groot {
+            display: inline-block;
+            background-color: #5a4b41;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+        }
+        .knop-groot:hover { background-color: #7a6a5d; transform: translateY(-2px); }
+        .knop-groot:active { transform: translateY(0); }
+
+        /* ---- ABONNEMENTENPAGINA ---- */
+        .abo-header {
+            text-align: center;
+            padding: 2.5rem 1rem 2rem;
+        }
+        .abo-header h2 {
+            color: #5a4b41;
+            font-size: 2rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+        }
+        .abo-header p { color: #7a6a5d; font-style: italic; }
+
+        .terug-knop {
+            background: none;
+            border: 1px solid #d4c4b7;
+            color: #7a6a5d;
+            border-radius: 6px;
+            padding: 0.5rem 1.2rem;
+            font-size: 0.85rem;
+            cursor: pointer;
+            margin-bottom: 1.5rem;
+            transition: all 0.2s;
+        }
+        .terug-knop:hover { background-color: #e6dace; color: #5a4b41; }
+
+        .pakket-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .pakket-card {
+            background: #ffffff;
+            border: 1px solid #d4c4b7;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .pakket-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(90,75,65,0.1);
+        }
+        .pakket-card.uitgelicht { border: 2px solid #5a4b41; }
+
+        .populair-badge {
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #5a4b41;
+            color: #e6dace;
+            font-size: 0.72rem;
+            padding: 4px 16px;
+            border-radius: 20px;
+            white-space: nowrap;
+            letter-spacing: 0.5px;
+        }
+        .pakket-naam {
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #7a6a5d;
+            margin-bottom: 0.75rem;
+        }
+        .pakket-prijs {
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: #5a4b41;
+            line-height: 1;
+        }
+        .pakket-prijs span {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #7a6a5d;
+        }
+        .pakket-omschrijving {
+            font-size: 0.9rem;
+            color: #7a6a5d;
+            margin: 0.5rem 0 1.25rem;
+            font-style: italic;
+        }
+        .pakket-lijst {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 1.5rem;
+            font-size: 0.88rem;
+            color: #4a4a4a;
+        }
+        .pakket-lijst li {
+            padding: 0.3rem 0;
+            border-bottom: 1px solid #f0ece8;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .pakket-lijst li:last-child { border-bottom: none; }
+        .pakket-lijst li::before {
+            content: '✓';
+            color: #5a4b41;
+            font-weight: bold;
+            font-size: 0.8rem;
+            flex-shrink: 0;
         }
 
-        /* Footer met je portfolio link */
+        .stripe-btn {
+            display: block;
+            width: 100%;
+            background-color: #5a4b41;
+            color: #ffffff;
+            border: none;
+            border-radius: 6px;
+            padding: 0.85rem 1rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s ease, opacity 0.2s ease;
+        }
+        .stripe-btn:hover { background-color: #7a6a5d; }
+        .stripe-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+        .stripe-veilig {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #7a6a5d;
+            margin-top: 1rem;
+            padding-bottom: 1rem;
+        }
+        .stripe-melding {
+            display: none;
+            text-align: center;
+            margin: 1rem 0;
+            padding: 0.75rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+        .stripe-melding.fout { background-color: #fdecea; color: #b00020; }
+        .stripe-melding.succes { background-color: #e6f4ea; color: #1a6e2e; }
+
+        /* FAQ */
+        .faq { margin: 1rem 0 2rem; }
+        .faq h3 {
+            color: #5a4b41;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .faq-item {
+            background: #ffffff;
+            border: 1px solid #e6dace;
+            border-radius: 8px;
+            padding: 1rem 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+        .faq-item strong { color: #5a4b41; display: block; margin-bottom: 0.25rem; }
+        .faq-item p { font-size: 0.9rem; color: #7a6a5d; }
+
+        /* ---- FOOTER ---- */
         footer {
             background-color: #5a4b41;
             color: #e6dace;
             text-align: center;
             padding: 2rem;
-            position: relative; /* Nodig voor de absolute positionering van de link */
+            position: relative;
             margin-top: 3rem;
         }
-        
-        /* Jouw verborgen linkje */
         .portfolio-link {
             position: absolute;
             bottom: 8px;
             right: 15px;
             font-size: 0.65em;
-            color: #a3968d; /* Subtiele kleur die wegvalt in de achtergrond */
+            color: #a3968d;
             text-decoration: none;
             opacity: 0.6;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.3s;
         }
-        .portfolio-link:hover {
-            opacity: 1;
-            color: #ffffff;
-            text-decoration: underline;
-        }
+        .portfolio-link:hover { opacity: 1; color: #fff; text-decoration: underline; }
     </style>
 </head>
 <body>
@@ -122,43 +316,216 @@
     </header>
 
     <nav>
-        <a href="#home">Home</a>
-        <a href="#behandelingen">Behandelingen</a>
-        <a href="#over">Over Mij</a>
-        <a href="#contact">Contact</a>
+        <a onclick="toonPagina('home')">Home</a>
+        <a onclick="toonPagina('home')">Behandelingen</a>
+        <a onclick="toonPagina('abonnementen')">Abonnementen</a>
+        <a onclick="toonPagina('home')">Over Mij</a>
+        <a onclick="toonPagina('home')">Contact</a>
     </nav>
 
-    <div class="container">
-        <section id="home" class="hero">
-            <h2>Welkom bij De Bron</h2>
-            <p>Ontdek de ultieme ontspanning en verzorging. Bij Schoonheidssalon De Bron staat persoonlijke aandacht centraal. Neem de tijd voor jezelf en laat je huid weer stralen in een oase van rust.</p>
-        </section>
+    <!-- ===== PAGINA: HOME ===== -->
+    <div id="pagina-home" class="pagina actief">
+        <div class="container">
 
-        <section id="behandelingen" class="services">
-            <div class="service-card">
-                <h3>Gezichtsbehandeling</h3>
-                <p>Een complete reiniging en verzorging afgestemd op jouw huidtype, inclusief een ontspannende massage.</p>
+            <section class="hero">
+                <h2>Welkom bij De Bron</h2>
+                <p>Ontdek de ultieme ontspanning en verzorging. Bij Schoonheidssalon De Bron staat persoonlijke aandacht centraal. Neem de tijd voor jezelf en laat je huid weer stralen in een oase van rust.</p>
+            </section>
+
+            <section class="services">
+                <div class="service-card">
+                    <h3>Gezichtsbehandeling</h3>
+                    <p>Een complete reiniging en verzorging afgestemd op jouw huidtype, inclusief een ontspannende massage.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Komt Later!</h3>
+                    <p>-Geen informatie beschikbaar-</p>
+                </div>
+                <div class="service-card">
+                    <h3>Komt Later!</h3>
+                    <p>-Geen informatie beschikbaar-</p>
+                </div>
+            </section>
+
+            <!-- Banner met knop naar abonnementenpagina -->
+            <div class="abonnement-banner">
+                <h3>Maandelijkse Verzorgingspakketten</h3>
+                <p>Elke maand de beste producten aan je deur — samengesteld door De Bron</p>
+                <button class="knop-groot" onclick="toonPagina('abonnementen')">
+                    Bekijk abonnementen →
+                </button>
             </div>
-            <div class="service-card">
-                <h3>Komt Later!</h3>
-                <p>-Geen informatie beschikbaar-</p>
-            </div>
-            <div class="service-card">
-                <h3>Komt Later!</h3>
-                <p>-Geen informatie beschikbaar-</p>
-            </div>
-        </section>
+
+        </div>
     </div>
 
-<footer>
+    <!-- ===== PAGINA: ABONNEMENTEN ===== -->
+    <div id="pagina-abonnementen" class="pagina">
+        <div class="container">
+
+            <button class="terug-knop" onclick="toonPagina('home')">← Terug naar Home</button>
+
+            <div class="abo-header">
+                <h2>Maandpakketten</h2>
+                <p>Elke maand een verzorgingspakket aan je deur · Elke maand opzegbaar</p>
+            </div>
+
+            <div id="stripe-melding" class="stripe-melding"></div>
+
+            <div class="pakket-grid">
+
+                <!-- PAKKET BASIS -->
+                <div class="pakket-card">
+                    <p class="pakket-naam">Basis</p>
+                    <p class="pakket-prijs">€19 <span>/maand</span></p>
+                    <p class="pakket-omschrijving">Een kleine verwennerij</p>
+                    <ul class="pakket-lijst">
+                        <li>2–3 zorgvuldig geselecteerde producten</li>
+                        <li>Reiniger & dagcrème</li>
+                        <li>Gratis verzending</li>
+                        <li>Elke maand opzegbaar</li>
+                    </ul>
+                    <button class="stripe-btn" onclick="startCheckout('JOUW_PRICE_ID_BASIS', this)">
+                        Abonneren via Stripe
+                    </button>
+                </div>
+
+                <!-- PAKKET PREMIUM -->
+                <div class="pakket-card uitgelicht">
+                    <span class="populair-badge">Meest gekozen</span>
+                    <p class="pakket-naam">Premium</p>
+                    <p class="pakket-prijs">€35 <span>/maand</span></p>
+                    <p class="pakket-omschrijving">Complete huidverzorging</p>
+                    <ul class="pakket-lijst">
+                        <li>4–5 producten per maand</li>
+                        <li>Reiniger, serum & nachtcrème</li>
+                        <li>Gezichtsmasker naar seizoen</li>
+                        <li>Gratis verzending</li>
+                        <li>Elke maand opzegbaar</li>
+                    </ul>
+                    <button class="stripe-btn" onclick="startCheckout('JOUW_PRICE_ID_PREMIUM', this)">
+                        Abonneren via Stripe
+                    </button>
+                </div>
+
+                <!-- PAKKET LUXE -->
+                <div class="pakket-card">
+                    <p class="pakket-naam">Luxe</p>
+                    <p class="pakket-prijs">€55 <span>/maand</span></p>
+                    <p class="pakket-omschrijving">Het allerbeste voor jouw huid</p>
+                    <ul class="pakket-lijst">
+                        <li>6+ exclusieve producten</li>
+                        <li>Premium & biologische merken</li>
+                        <li>Gepersonaliseerd op jouw huid</li>
+                        <li>Luxe verpakking</li>
+                        <li>Gratis verzending</li>
+                        <li>Elke maand opzegbaar</li>
+                    </ul>
+                    <button class="stripe-btn" onclick="startCheckout('JOUW_PRICE_ID_LUXE', this)">
+                        Abonneren via Stripe
+                    </button>
+                </div>
+
+            </div>
+
+            <p class="stripe-veilig">🔒 Veilig betalen via Stripe &nbsp;·&nbsp; Geen verplichtingen &nbsp;·&nbsp; Elke maand opzegbaar</p>
+
+            <div class="faq">
+                <h3>Veelgestelde vragen</h3>
+                <div class="faq-item">
+                    <strong>Wanneer wordt er bezorgd?</strong>
+                    <p>Je pakket wordt elke maand in de eerste week verstuurd. Je ontvangt een e-mail met de track & trace code.</p>
+                </div>
+                <div class="faq-item">
+                    <strong>Kan ik mijn abonnement opzeggen?</strong>
+                    <p>Ja, je kunt op elk moment opzeggen via je Stripe-account of door een e-mail te sturen naar deniseduvalroos@hotmail.com. Je betaalt alleen voor de maanden dat je abonnee bent.</p>
+                </div>
+                <div class="faq-item">
+                    <strong>Welke producten zitten erin?</strong>
+                    <p>De inhoud wisselt per maand en wordt door De Bron zorgvuldig samengesteld op basis van het seizoen en de nieuwste trends in huidverzorging.</p>
+                </div>
+                <div class="faq-item">
+                    <strong>Hoe betaal ik?</strong>
+                    <p>Betaling verloopt veilig via Stripe. Je kunt betalen met iDEAL, creditcard of andere gangbare betaalmethoden.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
         <div id="contact">
             <p><strong>Schoonheidssalon De Bron</strong></p>
             <p>Vogelweg 56, 1826 HB Alkmaar</p>
             <p>Email: deniseduvalroos@hotmail.com | Tel: 06 43671509</p>
         </div>
-        
-        <a href="https://littendekitten.github.io/Portfolio" target="_blank" class="portfolio-link" style="font-size: 1em;">Website door littendekitten</a>
+        <a href="https://littendekitten.github.io/Portfolio" target="_blank" class="portfolio-link">Website door littendekitten</a>
     </footer>
+
+    <script>
+        // =====================================================
+        // STAP 1: Vervang door jouw Stripe Publishable Key
+        // Vinden op: https://dashboard.stripe.com/apikeys
+        // =====================================================
+        const stripe = Stripe('JOUW_STRIPE_PUBLISHABLE_KEY');
+
+        function toonPagina(naam) {
+            document.querySelectorAll('.pagina').forEach(p => p.classList.remove('actief'));
+            document.getElementById('pagina-' + naam).classList.add('actief');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        async function startCheckout(priceId, knop) {
+            knop.disabled = true;
+            knop.textContent = 'Bezig...';
+
+            const melding = document.getElementById('stripe-melding');
+            melding.style.display = 'none';
+            melding.className = 'stripe-melding';
+
+            try {
+                const { error } = await stripe.redirectToCheckout({
+                    lineItems: [{ price: priceId, quantity: 1 }],
+                    mode: 'subscription',
+                    // =====================================================
+                    // STAP 2: Vervang door jouw eigen URL's
+                    // =====================================================
+                    successUrl: window.location.href.split('?')[0] + '?betaling=geslaagd',
+                    cancelUrl: window.location.href.split('?')[0] + '?betaling=geannuleerd',
+                });
+
+                if (error) {
+                    melding.textContent = 'Er ging iets mis: ' + error.message;
+                    melding.classList.add('fout');
+                    melding.style.display = 'block';
+                    knop.disabled = false;
+                    knop.textContent = 'Abonneren via Stripe';
+                }
+            } catch (e) {
+                melding.textContent = 'Kan geen verbinding maken. Probeer het later opnieuw.';
+                melding.classList.add('fout');
+                melding.style.display = 'block';
+                knop.disabled = false;
+                knop.textContent = 'Abonneren via Stripe';
+            }
+        }
+
+        // Melding tonen na terugkeer van Stripe
+        const params = new URLSearchParams(window.location.search);
+        if (params.get('betaling') === 'geslaagd') {
+            toonPagina('abonnementen');
+            const melding = document.getElementById('stripe-melding');
+            melding.textContent = '✓ Bedankt! Je abonnement is geactiveerd. Je ontvangt een bevestiging per e-mail.';
+            melding.classList.add('succes');
+            melding.style.display = 'block';
+        } else if (params.get('betaling') === 'geannuleerd') {
+            toonPagina('abonnementen');
+            const melding = document.getElementById('stripe-melding');
+            melding.textContent = 'Betaling geannuleerd. Je kunt het opnieuw proberen wanneer je wilt.';
+            melding.classList.add('fout');
+            melding.style.display = 'block';
+        }
+    </script>
 
 </body>
 </html>
