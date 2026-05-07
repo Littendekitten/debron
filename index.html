@@ -1,205 +1,153 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Schoonheidssalon De Bron</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Schoonheidssalon De Bron</title>
 
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            background-color: #faf8f5;
-            color: #4a4a4a;
-            line-height: 1.6;
-        }
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #faf8f5;
+    color: #4a4a4a;
+    line-height: 1.6;
+}
 
-        header {
-            background-color: #e6dace;
-            padding: 3rem 2rem;
-            text-align: center;
-        }
+header {
+    background: #e6dace;
+    padding: 3rem;
+    text-align: center;
+}
 
-        header h1 {
-            color: #5a4b41;
-            font-size: 2.7rem;
-            font-weight: 300;
-            letter-spacing: 2px;
-        }
+header h1 {
+    color: #5a4b41;
+    font-weight: 300;
+    letter-spacing: 2px;
+}
 
-        header p {
-            color: #7a6a5d;
-            font-style: italic;
-            margin-top: 0.5rem;
-        }
+nav {
+    background: #d4c4b7;
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+    flex-wrap: wrap;
+}
 
-        nav {
-            background-color: #d4c4b7;
-            display: flex;
-            justify-content: center;
-            padding: 1rem;
-            flex-wrap: wrap;
-        }
+nav a {
+    margin: 0 1rem;
+    cursor: pointer;
+    color: #5a4b41;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
 
-        nav a {
-            margin: 0.5rem 1.5rem;
-            text-decoration: none;
-            color: #5a4b41;
-            font-weight: bold;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: 0.3s;
-        }
+.pagina { display: none; }
+.pagina.actief { display: block; }
 
-        nav a:hover {
-            color: white;
-        }
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 2rem;
+}
 
-        .pagina {
-            display: none;
-        }
+.hero {
+    background: white;
+    padding: 3rem;
+    border-radius: 12px;
+    text-align: center;
+    margin-bottom: 2rem;
+}
 
-        .pagina.actief {
-            display: block;
-        }
+.hero h2 { color: #5a4b41; margin-bottom: 1rem; }
 
-        .container {
-            max-width: 1100px;
-            margin: auto;
-            padding: 2rem;
-        }
+.services {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+}
 
-        .hero {
-            background: white;
-            padding: 4rem 2rem;
-            border-radius: 12px;
-            text-align: center;
-            margin-bottom: 2rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
-        }
+.service-card {
+    background: white;
+    padding: 2rem;
+    flex: 1;
+    min-width: 250px;
+    border-radius: 12px;
+    text-align: center;
+}
 
-        .hero h2 {
-            color: #5a4b41;
-            margin-bottom: 1rem;
-            font-size: 2rem;
-        }
+.service-card h3 { color: #5a4b41; margin-bottom: 1rem; }
 
-        .banner {
-            background: linear-gradient(135deg, #e6dace 0%, #d4c4b7 100%);
-            padding: 3rem;
-            border-radius: 14px;
-            text-align: center;
-            margin-bottom: 2rem;
-        }
+.banner {
+    background: linear-gradient(135deg,#e6dace,#d4c4b7);
+    padding: 2.5rem;
+    text-align: center;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+}
 
-        .banner h3 {
-            color: #5a4b41;
-            font-size: 1.7rem;
-            margin-bottom: 1rem;
-            font-weight: 300;
-        }
+.banner h3 { color: #5a4b41; margin-bottom: 1rem; }
 
-        .banner p {
-            color: #7a6a5d;
-            margin-bottom: 1.5rem;
-        }
+.knop {
+    background: #5a4b41;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    cursor: pointer;
+    border-radius: 8px;
+}
 
-        .knop {
-            background-color: #5a4b41;
-            color: white;
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: 0.2s;
-            font-size: 1rem;
-        }
+.knop:hover { background: #7a6a5d; }
 
-        .knop:hover {
-            background-color: #7a6a5d;
-        }
+.pakket {
+    background: white;
+    padding: 2rem;
+    border-radius: 14px;
+    text-align: center;
+}
 
-        .pakket-card {
-            background: white;
-            border-radius: 14px;
-            padding: 2rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.04);
-            max-width: 500px;
-            margin: auto;
-            text-align: center;
-        }
+.pakket img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
 
-        .pakket-card img {
-            width: 100%;
-            border-radius: 10px;
-            margin-bottom: 1.5rem;
-        }
+.seizoen {
+    display: inline-block;
+    background: #5a4b41;
+    color: white;
+    padding: 0.4rem 1rem;
+    border-radius: 999px;
+    margin-bottom: 1rem;
+    font-size: 0.8rem;
+}
 
-        .seizoen-badge {
-            display: inline-block;
-            background-color: #5a4b41;
-            color: #fff;
-            padding: 0.4rem 1rem;
-            border-radius: 999px;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 1rem;
-        }
+.prijs {
+    font-size: 2.5rem;
+    color: #5a4b41;
+    margin: 1rem 0;
+}
 
-        .pakket-card h2 {
-            color: #5a4b41;
-            margin-bottom: 0.5rem;
-            font-weight: 400;
-        }
+ul {
+    text-align: left;
+    margin: 1.5rem 0;
+}
 
-        .prijs {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: #5a4b41;
-            margin: 1rem 0;
-        }
+ul li {
+    padding: 0.5rem 0;
+}
 
-        .pakket-lijst {
-            list-style: none;
-            text-align: left;
-            margin: 2rem 0;
-        }
-
-        .pakket-lijst li {
-            padding: 0.6rem 0;
-            border-bottom: 1px solid #eee;
-        }
-
-        .pakket-lijst li::before {
-            content: "✓ ";
-            color: #5a4b41;
-            font-weight: bold;
-        }
-
-        footer {
-            background-color: #5a4b41;
-            color: #e6dace;
-            text-align: center;
-            padding: 2rem;
-            margin-top: 4rem;
-        }
-
-        .melding {
-            text-align: center;
-            margin-top: 1rem;
-            color: #7a6a5d;
-            font-style: italic;
-        }
-    </style>
+ul li::before {
+    content: "✓ ";
+    color: #5a4b41;
+    font-weight: bold;
+}
+</style>
 </head>
+
 <body>
 
 <header>
@@ -208,193 +156,131 @@
 </header>
 
 <nav>
-    <a onclick="toonPagina('home')">Home</a>
-    <a onclick="toonPagina('pakket')">Seizoenspakket</a>
-    <a onclick="toonPagina('contact')">Contact</a>
+    <a onclick="toon('home')">Home</a>
+    <a onclick="toon('pakket')">Seizoenspakket</a>
 </nav>
 
 <!-- HOME -->
-<div id="pagina-home" class="pagina actief">
-    <div class="container">
+<div id="home" class="pagina actief">
+<div class="container">
 
-        <section class="hero">
-            <h2>Welkom bij De Bron</h2>
+    <section class="hero">
+        <h2>Welkom bij Schoonheidssalon De Bron</h2>
+        <p>Luxe huidverzorging en ontspanning op maat.</p>
+    </section>
 
-            <p>
-                Luxe verzorgingspakketten samengesteld op basis van het seizoen.
-                Elk pakket bevat exclusieve huidverzorging, wellnessproducten
-                en een rustgevende ervaring voor thuis.
-            </p>
-        </section>
+    <section class="services">
+        <div class="service-card">
+            <h3>Gezichtsbehandeling</h3>
+            <p>Complete reiniging en verzorging met massage.</p>
+        </div>
 
-        <section class="banner">
-            <h3 id="bannerTitel"></h3>
-            <p id="bannerTekst"></p>
+        <div class="service-card">
+            <h3>Huidanalyse</h3>
+            <p>Persoonlijk advies voor jouw huidtype.</p>
+        </div>
 
-            <button class="knop" onclick="toonPagina('pakket')">
-                Bekijk huidig pakket →
-            </button>
-        </section>
+        <div class="service-card">
+            <h3>Wellness</h3>
+            <p>Volledige ontspanning voor lichaam en geest.</p>
+        </div>
+    </section>
 
+    <div class="banner">
+        <h3 id="bannerTitel"></h3>
+        <p id="bannerText"></p>
+        <button class="knop" onclick="toon('pakket')">
+            Bekijk pakket
+        </button>
     </div>
+
+</div>
 </div>
 
 <!-- PAKKET -->
-<div id="pagina-pakket" class="pagina">
-    <div class="container">
+<div id="pakket" class="pagina">
+<div class="container">
 
-        <div class="pakket-card">
+<div class="pakket">
 
-            <img id="pakketAfbeelding" src="" alt="Seizoenspakket">
+    <img id="img" src="" />
 
-            <div class="seizoen-badge" id="seizoenBadge"></div>
+    <div class="seizoen" id="seizoen"></div>
 
-            <h2 id="pakketTitel"></h2>
+    <h2 id="titel"></h2>
 
-            <p>
-                Een exclusief samengesteld verzorgingspakket geïnspireerd door het huidige seizoen.
-            </p>
+    <p>Exclusief seizoenspakket voor huidverzorging en ontspanning.</p>
 
-            <div class="prijs">€150</div>
+    <div class="prijs">€150</div>
 
-            <ul class="pakket-lijst">
-                <li>Exclusieve skincare producten</li>
-                <li>Luxe wellness items</li>
-                <li>Premium verpakking</li>
-                <li>Perfect als cadeau</li>
-                <li>Gratis verzending binnen Nederland</li>
-            </ul>
+    <ul>
+        <li>Premium skincare producten</li>
+        <li>Seizoensgebonden verzorging</li>
+        <li>Luxe verpakking</li>
+        <li>Perfect cadeau</li>
+        <li>Verzending binnen Nederland</li>
+    </ul>
 
-            <!-- VERVANG DEZE LINK -->
-            <button
-                class="knop"
-                id="koopKnop">
-                Bestel via Stripe
-            </button>
+    <button class="knop" id="buyBtn">
+        Bestel via Stripe
+    </button>
 
-            <p class="melding">
-                Veilig betalen via Stripe · iDEAL · Creditcard
-            </p>
-
-        </div>
-
-    </div>
 </div>
 
-<!-- CONTACT -->
-<div id="pagina-contact" class="pagina">
-    <div class="container">
-
-        <div class="hero">
-            <h2>Contact</h2>
-
-            <p>
-                Schoonheidssalon De Bron<br>
-                Vogelweg 56, 1826 HB Alkmaar<br><br>
-
-                Email: deniseduvalroos@hotmail.com<br>
-                Tel: 06 43671509
-            </p>
-        </div>
-
-    </div>
 </div>
-
-<footer>
-    <p><strong>Schoonheidssalon De Bron</strong></p>
-    <p>Vogelweg 56 · Alkmaar</p>
-</footer>
+</div>
 
 <script>
-    function toonPagina(naam) {
-        document.querySelectorAll('.pagina').forEach(p => {
-            p.classList.remove('actief');
-        });
+function toon(id){
+    document.querySelectorAll('.pagina').forEach(p=>p.classList.remove('actief'));
+    document.getElementById(id).classList.add('actief');
+}
 
-        document.getElementById('pagina-' + naam).classList.add('actief');
+// SEIZOEN LOGICA
+const m = new Date().getMonth()+1;
 
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    }
+let seizoen="",titel="",tekst="",img="",link="";
 
-    // =========================
-    // SEIZOEN BEPALEN
-    // =========================
+if(m>=3 && m<=5){
+    seizoen="Lente";
+    titel="Lente Seizoenspakket";
+    tekst="Frisse glow & herstart van je huid";
+    img="lente.jpg";
+    link="https://buy.stripe.com/JOUW_LENTE";
+}
+else if(m>=6 && m<=8){
+    seizoen="Zomer";
+    titel="Zomer Seizoenspakket";
+    tekst="Hydratatie en bescherming voor warme dagen";
+    img="zomer.jpg";
+    link="https://buy.stripe.com/JOUW_ZOMER";
+}
+else if(m>=9 && m<=11){
+    seizoen="Herfst";
+    titel="Herfst Seizoenspakket";
+    tekst="Herstel en voeding voor je huid";
+    img="herfst.jpg";
+    link="https://buy.stripe.com/JOUW_HERFST";
+}
+else{
+    seizoen="Winter";
+    titel="Winter Seizoenspakket";
+    tekst="Diepe voeding en bescherming";
+    img="winter.jpg";
+    link="https://buy.stripe.com/JOUW_WINTER";
+}
 
-    const maand = new Date().getMonth() + 1;
+document.getElementById("bannerTitel").innerText = seizoen + " 2026 Pakket";
+document.getElementById("bannerText").innerText = tekst;
 
-    let seizoen = "";
-    let titel = "";
-    let banner = "";
-    let afbeelding = "";
-    let stripeLink = "";
+document.getElementById("titel").innerText = titel;
+document.getElementById("seizoen").innerText = seizoen;
 
-    // LENTE
-    if (maand >= 3 && maand <= 5) {
-        seizoen = "Lente";
-        titel = "Lente Verzorgingspakket";
-        banner = "Frisse verzorging voor een stralende lentehuid.";
-        afbeelding = "lente.jpg";
+document.getElementById("img").src = img;
 
-        // VERVANG
-        stripeLink = "https://buy.stripe.com/JOUW_LENTE_LINK";
-    }
-
-    // ZOMER
-    else if (maand >= 6 && maand <= 8) {
-        seizoen = "Zomer";
-        titel = "Zomer Verzorgingspakket";
-        banner = "Hydratatie en glow voor zonnige dagen.";
-        afbeelding = "zomer.jpg";
-
-        // VERVANG
-        stripeLink = "https://buy.stripe.com/JOUW_ZOMER_LINK";
-    }
-
-    // HERFST
-    else if (maand >= 9 && maand <= 11) {
-        seizoen = "Herfst";
-        titel = "Herfst Verzorgingspakket";
-        banner = "Herstel en voed je huid tijdens de koude maanden.";
-        afbeelding = "herfst.jpg";
-
-        // VERVANG
-        stripeLink = "https://buy.stripe.com/JOUW_HERFST_LINK";
-    }
-
-    // WINTER
-    else {
-        seizoen = "Winter";
-        titel = "Winter Verzorgingspakket";
-        banner = "Diepe voeding en luxe verzorging voor de winter.";
-        afbeelding = "winter.jpg";
-
-        // VERVANG
-        stripeLink = "https://buy.stripe.com/JOUW_WINTER_LINK";
-    }
-
-    // Pagina vullen
-    document.getElementById('bannerTitel').innerText =
-        seizoen + "pakket 2026";
-
-    document.getElementById('bannerTekst').innerText =
-        banner;
-
-    document.getElementById('seizoenBadge').innerText =
-        seizoen + " Exclusief";
-
-    document.getElementById('pakketTitel').innerText =
-        titel;
-
-    document.getElementById('pakketAfbeelding').src =
-        afbeelding;
-
-    // Stripe knop
-    document.getElementById('koopKnop').onclick = () => {
-        window.location.href = stripeLink;
-    };
+document.getElementById("buyBtn").onclick = () => {
+    window.location.href = link;
+};
 </script>
 
 </body>
