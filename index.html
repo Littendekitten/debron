@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Schoonheidssalon De Bron</title>
 
+<script async src="https://js.stripe.com/v3/pricing-table.js"></script>
+
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -61,8 +63,6 @@ nav a {
     margin-bottom: 2rem;
 }
 
-.hero h2 { color: #5a4b41; margin-bottom: 1rem; }
-
 .services {
     display: flex;
     gap: 1rem;
@@ -79,7 +79,7 @@ nav a {
     text-align: center;
 }
 
-.service-card h3 { color: #5a4b41; margin-bottom: 1rem; }
+.service-card h3 { color: #5a4b41; }
 
 .banner {
     background: linear-gradient(135deg,#e6dace,#d4c4b7);
@@ -88,8 +88,6 @@ nav a {
     border-radius: 12px;
     margin-bottom: 2rem;
 }
-
-.banner h3 { color: #5a4b41; margin-bottom: 1rem; }
 
 .knop {
     background: #5a4b41;
@@ -100,50 +98,29 @@ nav a {
     border-radius: 8px;
 }
 
-.knop:hover { background: #7a6a5d; }
-
-.pakket {
-    background: white;
-    padding: 2rem;
-    border-radius: 14px;
-    text-align: center;
+/* Stripe container */
+.stripe-box {
+    margin-top: 2rem;
 }
 
-.pakket img {
-    width: 100%;
-    border-radius: 10px;
-    margin-bottom: 1rem;
+/* FOOTER CREDIT */
+.credit {
+    position: fixed;
+    bottom: 10px;
+    right: 12px;
+    font-size: 0.75rem;
+    color: rgba(90,75,65,0.6);
+    background: rgba(255,255,255,0.4);
+    padding: 6px 10px;
+    border-radius: 8px;
+    backdrop-filter: blur(4px);
+    cursor: pointer;
+    transition: 0.2s;
 }
 
-.seizoen {
-    display: inline-block;
-    background: #5a4b41;
-    color: white;
-    padding: 0.4rem 1rem;
-    border-radius: 999px;
-    margin-bottom: 1rem;
-    font-size: 0.8rem;
-}
-
-.prijs {
-    font-size: 2.5rem;
-    color: #5a4b41;
-    margin: 1rem 0;
-}
-
-ul {
-    text-align: left;
-    margin: 1.5rem 0;
-}
-
-ul li {
-    padding: 0.5rem 0;
-}
-
-ul li::before {
-    content: "✓ ";
-    color: #5a4b41;
-    font-weight: bold;
+.credit:hover {
+    color: rgba(90,75,65,1);
+    background: rgba(255,255,255,0.7);
 }
 </style>
 </head>
@@ -201,34 +178,54 @@ ul li::before {
 <div id="pakket" class="pagina">
 <div class="container">
 
-<div class="pakket">
-
-    <img id="img" src="" />
-
-    <div class="seizoen" id="seizoen"></div>
+<div class="hero">
 
     <h2 id="titel"></h2>
+    <div id="seizoen"></div>
 
     <p>Exclusief seizoenspakket voor huidverzorging en ontspanning.</p>
 
-    <div class="prijs">€150</div>
+    <div class="stripe-box">
 
-    <ul>
-        <li>Premium skincare producten</li>
-        <li>Seizoensgebonden verzorging</li>
-        <li>Luxe verpakking</li>
-        <li>Perfect cadeau</li>
-        <li>Verzending binnen Nederland</li>
-    </ul>
+        <!-- LENTE -->
+        <div id="lente" style="display:none;">
+            <stripe-pricing-table pricing-table-id="prctbl_1TUWsVBX75VziageNYGeeu5d"
+            publishable-key="pk_live_51TUS5BBX75VziagecYu3VnUmNUIppF9sEGgNBxZhuPXsSCyExqBDEtD6vOjR40MvXaZGkOgAwTmImtB5PJX55oFm00jv5wWyEB">
+            </stripe-pricing-table>
+        </div>
 
-    <button class="knop" id="buyBtn">
-        Bestel via Stripe
-    </button>
+        <!-- ZOMER -->
+        <div id="zomer" style="display:none;">
+            <stripe-pricing-table pricing-table-id="prctbl_1TUWuGBX75VziagegdoFEZ94"
+            publishable-key="pk_live_51TUS5BBX75VziagecYu3VnUmNUIppF9sEGgNBxZhuPXsSCyExqBDEtD6vOjR40MvXaZGkOgAwTmImtB5PJX55oFm00jv5wWyEB">
+            </stripe-pricing-table>
+        </div>
+
+        <!-- HERFST -->
+        <div id="herfst" style="display:none;">
+            <stripe-pricing-table pricing-table-id="prctbl_1TUWw2BX75VziagehbMZ2YC7"
+            publishable-key="pk_live_51TUS5BBX75VziagecYu3VnUmNUIppF9sEGgNBxZhuPXsSCyExqBDEtD6vOjR40MvXaZGkOgAwTmImtB5PJX55oFm00jv5wWyEB">
+            </stripe-pricing-table>
+        </div>
+
+        <!-- WINTER -->
+        <div id="winter" style="display:none;">
+            <stripe-pricing-table pricing-table-id="prctbl_1TUX3JBX75VziageuxpnwQzd"
+            publishable-key="pk_live_51TUS5BBX75VziagecYu3VnUmNUIppF9sEGgNBxZhuPXsSCyExqBDEtD6vOjR40MvXaZGkOgAwTmImtB5PJX55oFm00jv5wWyEB">
+            </stripe-pricing-table>
+        </div>
+
+    </div>
 
 </div>
 
 </div>
 </div>
+
+<!-- CREDIT -->
+<a class="credit" href="https://littendekitten.github.io/Portfolio" target="_blank">
+Website gemaakt door Sven Hildering
+</a>
 
 <script>
 function toon(id){
@@ -239,35 +236,31 @@ function toon(id){
 // SEIZOEN LOGICA
 const m = new Date().getMonth()+1;
 
-let seizoen="",titel="",tekst="",img="",link="";
+let seizoen="",titel="",tekst="",active="";
 
 if(m>=3 && m<=5){
     seizoen="Lente";
     titel="Lente Seizoenspakket";
     tekst="Frisse glow & herstart van je huid";
-    img="lente.jpg";
-    link="https://buy.stripe.com/price_1TUWOGBX75VziagehnivWE6h";
+    active="lente";
 }
 else if(m>=6 && m<=8){
     seizoen="Zomer";
     titel="Zomer Seizoenspakket";
-    tekst="Hydratatie en bescherming voor warme dagen";
-    img="zomer.jpg";
-    link="https://buy.stripe.com/price_1TUWS1BX75VziagePTgK2HBI";
+    tekst="Hydratatie en bescherming";
+    active="zomer";
 }
 else if(m>=9 && m<=11){
     seizoen="Herfst";
     titel="Herfst Seizoenspakket";
-    tekst="Herstel en voeding voor je huid";
-    img="herfst.jpg";
-    link="https://buy.stripe.com/price_1TUWXIBX75VziagexiJz3LV1";
+    tekst="Herstel en voeding";
+    active="herfst";
 }
 else{
     seizoen="Winter";
     titel="Winter Seizoenspakket";
     tekst="Diepe voeding en bescherming";
-    img="winter.jpg";
-    link="https://buy.stripe.com/price_1TUWb1BX75VziageImJecVWr";
+    active="winter";
 }
 
 document.getElementById("bannerTitel").innerText = seizoen + " 2026 Pakket";
@@ -276,11 +269,7 @@ document.getElementById("bannerText").innerText = tekst;
 document.getElementById("titel").innerText = titel;
 document.getElementById("seizoen").innerText = seizoen;
 
-document.getElementById("img").src = img;
-
-document.getElementById("buyBtn").onclick = () => {
-    window.location.href = link;
-};
+document.getElementById(active).style.display = "block";
 </script>
 
 </body>
