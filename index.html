@@ -1,129 +1,211 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Schoonheidssalon De Bron</title>
-<link rel="icon" type="image/png" href="favicon.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Schoonheidssalon De Bron - Luxe huidverzorging en ontspanning op maat. Bekijk ons exclusieve seizoenspakket.">
+    <meta name="author" content="Sven Hildering">
+    <title>Schoonheidssalon De Bron</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
 
-<script async src="https://js.stripe.com/v3/pricing-table.js"></script>
+    <!-- Stripe Script -->
+    <script async src="https://js.stripe.com/v3/pricing-table.js"></script>
 
-<style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
+    <style>
+        /* Basis Instellingen */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
 
-body {
-    font-family: 'Segoe UI', sans-serif;
-    background: #faf8f5;
-    color: #4a4a4a;
-    line-height: 1.6;
-}
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #faf8f5;
+            color: #4a4a4a;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-header {
-    background: #e6dace;
-    padding: 3rem;
-    text-align: center;
-}
+        /* Header & Navigatie */
+        header {
+            background: #e6dace;
+            padding: 4rem 1rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
 
-header h1 {
-    color: #5a4b41;
-    font-weight: 300;
-    letter-spacing: 2px;
-}
+        header h1 {
+            color: #5a4b41;
+            font-weight: 300;
+            letter-spacing: 3px;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
 
-nav {
-    background: #d4c4b7;
-    display: flex;
-    justify-content: center;
-    padding: 1rem;
-    flex-wrap: wrap;
-}
+        nav {
+            background: #d4c4b7;
+            display: flex;
+            justify-content: center;
+            padding: 1rem;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
 
-nav a {
-    margin: 0 1rem;
-    cursor: pointer;
-    color: #5a4b41;
-    font-weight: bold;
-    text-transform: uppercase;
-    font-size: 0.9rem;
-}
+        nav a {
+            margin: 0 1.5rem;
+            cursor: pointer;
+            color: #5a4b41;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-decoration: none;
+            transition: color 0.3s ease, transform 0.2s ease;
+            padding: 5px 0;
+            border-bottom: 2px solid transparent;
+        }
 
-.pagina { display: none; }
-.pagina.actief { display: block; }
+        nav a:hover {
+            color: #ffffff;
+            transform: translateY(-1px);
+        }
 
-.container {
-    max-width: 1000px;
-    margin: auto;
-    padding: 2rem;
-}
+        nav a.active-link {
+            border-bottom: 2px solid #5a4b41;
+        }
 
-.hero {
-    background: white;
-    padding: 3rem;
-    border-radius: 12px;
-    text-align: center;
-    margin-bottom: 2rem;
-}
+        /* Pagina Overgangen */
+        .pagina { 
+            display: none; 
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-.services {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    margin-bottom: 2rem;
-}
+        .pagina.actief { display: block; }
 
-.service-card {
-    background: white;
-    padding: 2rem;
-    flex: 1;
-    min-width: 250px;
-    border-radius: 12px;
-    text-align: center;
-}
+        /* Layout Container */
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 3rem 1.5rem;
+        }
 
-.service-card h3 { color: #5a4b41; }
+        /* Secties */
+        .hero {
+            background: white;
+            padding: 4rem 2rem;
+            border-radius: 16px;
+            text-align: center;
+            margin-bottom: 3rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+        }
 
-.banner {
-    background: linear-gradient(135deg,#e6dace,#d4c4b7);
-    padding: 2.5rem;
-    text-align: center;
-    border-radius: 12px;
-    margin-bottom: 2rem;
-}
+        .hero h2 {
+            color: #5a4b41;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
 
-.knop {
-    background: #5a4b41;
-    color: white;
-    border: none;
-    padding: 1rem 2rem;
-    cursor: pointer;
-    border-radius: 8px;
-}
+        .services {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
 
-/* Stripe container */
-.stripe-box {
-    margin-top: 2rem;
-}
+        .service-card {
+            background: white;
+            padding: 2.5rem;
+            flex: 1;
+            min-width: 280px;
+            border-radius: 16px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+        }
 
-/* FOOTER CREDIT */
-.credit {
-    position: fixed;
-    bottom: 10px;
-    right: 12px;
-    font-size: 0.75rem;
-    color: rgba(90,75,65,0.6);
-    background: rgba(255,255,255,0.4);
-    padding: 6px 10px;
-    border-radius: 8px;
-    backdrop-filter: blur(4px);
-    cursor: pointer;
-    transition: 0.2s;
-}
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+        }
 
-.credit:hover {
-    color: rgba(90,75,65,1);
-    background: rgba(255,255,255,0.7);
-}
-</style>
+        .service-card h3 { 
+            color: #5a4b41; 
+            margin-bottom: 1rem;
+        }
+
+        .banner {
+            background: linear-gradient(135deg, #e6dace 0%, #d4c4b7 100%);
+            padding: 3.5rem;
+            text-align: center;
+            border-radius: 16px;
+            margin-bottom: 3rem;
+            color: #5a4b41;
+        }
+
+        .knop {
+            background: #5a4b41;
+            color: white;
+            border: none;
+            padding: 1.2rem 2.5rem;
+            cursor: pointer;
+            border-radius: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            margin-top: 1.5rem;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .knop:hover {
+            background: #463a32;
+            transform: scale(1.05);
+        }
+
+        /* Stripe container */
+        .stripe-box {
+            margin-top: 2.5rem;
+            min-height: 400px;
+        }
+
+        /* FOOTER CREDIT */
+        .credit {
+            position: fixed;
+            bottom: 15px;
+            right: 15px;
+            font-size: 0.75rem;
+            color: rgba(90,75,65,0.7);
+            background: rgba(255,255,255,0.7);
+            padding: 8px 14px;
+            border-radius: 10px;
+            backdrop-filter: blur(8px);
+            text-decoration: none;
+            border: 1px solid rgba(255,255,255,0.3);
+            transition: all 0.3s ease;
+            z-index: 2000;
+        }
+
+        .credit:hover {
+            color: #5a4b41;
+            background: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        /* Mobiele Optimalisatie */
+        @media (max-width: 600px) {
+            header { padding: 2rem 1rem; }
+            header h1 { font-size: 1.8rem; }
+            .container { padding: 1.5rem 1rem; }
+            .banner { padding: 2rem 1.5rem; }
+        }
+    </style>
 </head>
 
 <body>
@@ -133,144 +215,152 @@ nav a {
     <p>Even helemaal tot rust komen</p>
 </header>
 
-<nav>
-    <a onclick="toon('home')">Home</a>
-    <a onclick="toon('pakket')">Seizoenspakket</a>
+<nav id="mainNav">
+    <a onclick="toon('home')" id="link-home" class="active-link" role="button" tabindex="0">Home</a>
+    <a onclick="toon('pakket')" id="link-pakket" role="button" tabindex="0">Seizoenspakket</a>
 </nav>
 
 <!-- HOME -->
-<div id="home" class="pagina actief">
-<div class="container">
+<main id="home" class="pagina actief">
+    <div class="container">
+        <section class="hero">
+            <h2>Welkom bij Schoonheidssalon De Bron</h2>
+            <p>Luxe huidverzorging en ontspanning op maat.</p>
+        </section>
 
-    <section class="hero">
-        <h2>Welkom bij Schoonheidssalon De Bron</h2>
-        <p>Luxe huidverzorging en ontspanning op maat.</p>
-    </section>
+        <section class="services">
+            <div class="service-card">
+                <h3>Gezichtsbehandeling</h3>
+                <p>Complete reiniging en verzorging met massage.</p>
+            </div>
 
-    <section class="services">
-        <div class="service-card">
-            <h3>Gezichtsbehandeling</h3>
-            <p>Complete reiniging en verzorging met massage.</p>
+            <div class="service-card">
+                <h3>Huidanalyse</h3>
+                <p>Persoonlijk advies voor jouw huidtype.</p>
+            </div>
+
+            <div class="service-card">
+                <h3>Wellness</h3>
+                <p>Volledige ontspanning voor lichaam en geest.</p>
+            </div>
+        </section>
+
+        <div class="banner">
+            <h3 id="bannerTitel"></h3>
+            <p id="bannerText"></p>
+            <button class="knop" onclick="toon('pakket')">
+                Bekijk pakket
+            </button>
         </div>
-
-        <div class="service-card">
-            <h3>Huidanalyse</h3>
-            <p>Persoonlijk advies voor jouw huidtype.</p>
-        </div>
-
-        <div class="service-card">
-            <h3>Wellness</h3>
-            <p>Volledige ontspanning voor lichaam en geest.</p>
-        </div>
-    </section>
-
-    <div class="banner">
-        <h3 id="bannerTitel"></h3>
-        <p id="bannerText"></p>
-        <button class="knop" onclick="toon('pakket')">
-            Bekijk pakket
-        </button>
     </div>
-
-</div>
-</div>
+</main>
 
 <!-- PAKKET -->
 <div id="pakket" class="pagina">
-<div class="container">
+    <div class="container">
+        <div class="hero">
+            <h2 id="titel"></h2>
+            <div id="seizoen" style="font-style: italic; margin-bottom: 10px; color: #8a7b71;"></div>
 
-<div class="hero">
+            <p>Exclusief seizoenspakket voor huidverzorging en ontspanning.</p>
 
-    <h2 id="titel"></h2>
-    <div id="seizoen"></div>
+            <div class="stripe-box">
+                <!-- LENTE -->
+                <div id="lente" style="display:none;">
+                    <stripe-pricing-table pricing-table-id="prctbl_1TUWsVBX75VziageNYGeeu5d"
+                    publishable-key="pk_live_51TUS5BBX75VziagecYu3VnUmNUIppF9sEGgNBxZhuPXsSCyExqBDEtD6vOjR40MvXaZGkOgAwTmImtB5PJX55oFm00jv5wWyEB">
+                    </stripe-pricing-table>
+                </div>
 
-    <p>Exclusief seizoenspakket voor huidverzorging en ontspanning.</p>
+                <!-- ZOMER -->
+                <div id="zomer" style="display:none;">
+                    <stripe-pricing-table pricing-table-id="prctbl_1TUWuGBX75VziagegdoFEZ94"
+                    publishable-key="pk_live_51TUS5BBX75VziagecYu3VnUmNUIppF9sEGgNBxZhuPXsSCyExqBDEtD6vOjR40MvXaZGkOgAwTmImtB5PJX55oFm00jv5wWyEB">
+                    </stripe-pricing-table>
+                </div>
 
-    <div class="stripe-box">
+                <!-- HERFST -->
+                <div id="herfst" style="display:none;">
+                    <stripe-pricing-table pricing-table-id="prctbl_1TUWw2BX75VziagehbMZ2YC7"
+                    publishable-key="pk_live_51TUS5BBX75VziagecYu3VnUmNUIppF9sEGgNBxZhuPXsSCyExqBDEtD6vOjR40MvXaZGkOgAwTmImtB5PJX55oFm00jv5wWyEB">
+                    </stripe-pricing-table>
+                </div>
 
-        <!-- LENTE -->
-        <div id="lente" style="display:none;">
-            <stripe-pricing-table pricing-table-id="prctbl_1TUWsVBX75VziageNYGeeu5d"
-            publishable-key="pk_live_51TUS5BBX75VziagecYu3VnUmNUIppF9sEGgNBxZhuPXsSCyExqBDEtD6vOjR40MvXaZGkOgAwTmImtB5PJX55oFm00jv5wWyEB">
-            </stripe-pricing-table>
+                <!-- WINTER -->
+                <div id="winter" style="display:none;">
+                    <stripe-pricing-table pricing-table-id="prctbl_1TUX3JBX75VziageuxpnwQzd"
+                    publishable-key="pk_live_51TUS5BBX75VziagecYu3VnUmNUIppF9sEGgNBxZhuPXsSCyExqBDEtD6vOjR40MvXaZGkOgAwTmImtB5PJX55oFm00jv5wWyEB">
+                    </stripe-pricing-table>
+                </div>
+            </div>
         </div>
-
-        <!-- ZOMER -->
-        <div id="zomer" style="display:none;">
-            <stripe-pricing-table pricing-table-id="prctbl_1TUWuGBX75VziagegdoFEZ94"
-            publishable-key="pk_live_51TUS5BBX75VziagecYu3VnUmNUIppF9sEGgNBxZhuPXsSCyExqBDEtD6vOjR40MvXaZGkOgAwTmImtB5PJX55oFm00jv5wWyEB">
-            </stripe-pricing-table>
-        </div>
-
-        <!-- HERFST -->
-        <div id="herfst" style="display:none;">
-            <stripe-pricing-table pricing-table-id="prctbl_1TUWw2BX75VziagehbMZ2YC7"
-            publishable-key="pk_live_51TUS5BBX75VziagecYu3VnUmNUIppF9sEGgNBxZhuPXsSCyExqBDEtD6vOjR40MvXaZGkOgAwTmImtB5PJX55oFm00jv5wWyEB">
-            </stripe-pricing-table>
-        </div>
-
-        <!-- WINTER -->
-        <div id="winter" style="display:none;">
-            <stripe-pricing-table pricing-table-id="prctbl_1TUX3JBX75VziageuxpnwQzd"
-            publishable-key="pk_live_51TUS5BBX75VziagecYu3VnUmNUIppF9sEGgNBxZhuPXsSCyExqBDEtD6vOjR40MvXaZGkOgAwTmImtB5PJX55oFm00jv5wWyEB">
-            </stripe-pricing-table>
-        </div>
-
     </div>
-
-</div>
-
-</div>
 </div>
 
 <!-- CREDIT -->
 <a class="credit" href="https://littendekitten.github.io/Portfolio" target="_blank">
-Website gemaakt door Sven Hildering
+    Website gemaakt door Sven Hildering
 </a>
 
 <script>
-function toon(id){
-    document.querySelectorAll('.pagina').forEach(p=>p.classList.remove('actief'));
-    document.getElementById(id).classList.add('actief');
-}
+    function toon(id){
+        // Verberg alle pagina's
+        document.querySelectorAll('.pagina').forEach(p => p.classList.remove('actief'));
+        // Toon de gekozen pagina
+        document.getElementById(id).classList.add('actief');
+        
+        // Update Navigatie styling
+        document.querySelectorAll('nav a').forEach(a => a.classList.remove('active-link'));
+        document.getElementById('link-' + id).classList.add('active-link');
+        
+        // Scroll naar boven
+        window.scrollTo(0, 0);
+    }
 
-// SEIZOEN LOGICA
-const m = new Date().getMonth()+1;
+    // SEIZOEN LOGICA
+    const m = new Date().getMonth() + 1;
+    let seizoen="", titel="", tekst="", active="";
 
-let seizoen="",titel="",tekst="",active="";
+    if(m >= 3 && m <= 5){
+        seizoen="Lente";
+        titel="Lente Seizoenspakket";
+        tekst="Frisse glow & herstart van je huid";
+        active="lente";
+    }
+    else if(m >= 6 && m <= 8){
+        seizoen="Zomer";
+        titel="Zomer Seizoenspakket";
+        tekst="Hydratatie en bescherming";
+        active="zomer";
+    }
+    else if(m >= 9 && m <= 11){
+        seizoen="Herfst";
+        titel="Herfst Seizoenspakket";
+        tekst="Herstel en voeding";
+        active="herfst";
+    }
+    else {
+        seizoen="Winter";
+        titel="Winter Seizoenspakket";
+        tekst="Diepe voeding en bescherming";
+        active="winter";
+    }
 
-if(m>=3 && m<=5){
-    seizoen="Lente";
-    titel="Lente Seizoenspakket";
-    tekst="Frisse glow & herstart van je huid";
-    active="lente";
-}
-else if(m>=6 && m<=8){
-    seizoen="Zomer";
-    titel="Zomer Seizoenspakket";
-    tekst="Hydratatie en bescherming";
-    active="zomer";
-}
-else if(m>=9 && m<=11){
-    seizoen="Herfst";
-    titel="Herfst Seizoenspakket";
-    tekst="Herstel en voeding";
-    active="herfst";
-}
-else{
-    seizoen="Winter";
-    titel="Winter Seizoenspakket";
-    tekst="Diepe voeding en bescherming";
-    active="winter";
-}
+    // Dom updates
+    document.getElementById("bannerTitel").innerText = seizoen + " 2026 Pakket";
+    document.getElementById("bannerText").innerText = tekst;
+    document.getElementById("titel").innerText = titel;
+    document.getElementById("seizoen").innerText = seizoen;
+    document.getElementById(active).style.display = "block";
 
-document.getElementById("bannerTitel").innerText = seizoen + " 2026 Pakket";
-document.getElementById("bannerText").innerText = tekst;
-
-document.getElementById("titel").innerText = titel;
-document.getElementById("seizoen").innerText = seizoen;
-
-document.getElementById(active).style.display = "block";
+    // Toegankelijkheid: Enter-key ondersteuning voor nav
+    document.querySelectorAll('nav a').forEach(link => {
+        link.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                this.click();
+            }
+        });
+    });
 </script>
 
 </body>
