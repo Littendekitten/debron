@@ -29,9 +29,17 @@
         /* Header & Navigatie */
         header {
             background: #e6dace;
-            padding: 4rem 1rem;
+            padding: 3rem 1rem;
             text-align: center;
             border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        /* Logo Styling */
+        .logo {
+            max-width: 180px; /* Pas dit aan naar de gewenste grootte */
+            height: auto;
+            margin-bottom: 1.5rem;
+            display: inline-block;
         }
 
         header h1 {
@@ -202,6 +210,7 @@
         @media (max-width: 600px) {
             header { padding: 2rem 1rem; }
             header h1 { font-size: 1.8rem; }
+            .logo { max-width: 140px; }
             .container { padding: 1.5rem 1rem; }
             .banner { padding: 2rem 1.5rem; }
         }
@@ -211,6 +220,8 @@
 <body>
 
 <header>
+    <!-- Logo bovenaan gecentreerd -->
+    <img src="logo.png" alt="Logo Schoonheidssalon De Bron" class="logo">
     <h1>Schoonheidssalon De Bron</h1>
     <p>Even helemaal tot rust komen</p>
 </header>
@@ -304,16 +315,12 @@
 
 <script>
     function toon(id){
-        // Verberg alle pagina's
         document.querySelectorAll('.pagina').forEach(p => p.classList.remove('actief'));
-        // Toon de gekozen pagina
         document.getElementById(id).classList.add('actief');
         
-        // Update Navigatie styling
         document.querySelectorAll('nav a').forEach(a => a.classList.remove('active-link'));
         document.getElementById('link-' + id).classList.add('active-link');
         
-        // Scroll naar boven
         window.scrollTo(0, 0);
     }
 
@@ -322,43 +329,24 @@
     let seizoen="", titel="", tekst="", active="";
 
     if(m >= 3 && m <= 5){
-        seizoen="Lente";
-        titel="Lente Seizoenspakket";
-        tekst="Frisse glow & herstart van je huid";
-        active="lente";
-    }
-    else if(m >= 6 && m <= 8){
-        seizoen="Zomer";
-        titel="Zomer Seizoenspakket";
-        tekst="Hydratatie en bescherming";
-        active="zomer";
-    }
-    else if(m >= 9 && m <= 11){
-        seizoen="Herfst";
-        titel="Herfst Seizoenspakket";
-        tekst="Herstel en voeding";
-        active="herfst";
-    }
-    else {
-        seizoen="Winter";
-        titel="Winter Seizoenspakket";
-        tekst="Diepe voeding en bescherming";
-        active="winter";
+        seizoen="Lente"; titel="Lente Seizoenspakket"; tekst="Frisse glow & herstart van je huid"; active="lente";
+    } else if(m >= 6 && m <= 8){
+        seizoen="Zomer"; titel="Zomer Seizoenspakket"; tekst="Hydratatie en bescherming"; active="zomer";
+    } else if(m >= 9 && m <= 11){
+        seizoen="Herfst"; titel="Herfst Seizoenspakket"; tekst="Herstel en voeding"; active="herfst";
+    } else {
+        seizoen="Winter"; titel="Winter Seizoenspakket"; tekst="Diepe voeding en bescherming"; active="winter";
     }
 
-    // Dom updates
     document.getElementById("bannerTitel").innerText = seizoen + " 2026 Pakket";
     document.getElementById("bannerText").innerText = tekst;
     document.getElementById("titel").innerText = titel;
     document.getElementById("seizoen").innerText = seizoen;
     document.getElementById(active).style.display = "block";
 
-    // Toegankelijkheid: Enter-key ondersteuning voor nav
     document.querySelectorAll('nav a').forEach(link => {
         link.addEventListener('keypress', function (e) {
-            if (e.key === 'Enter') {
-                this.click();
-            }
+            if (e.key === 'Enter') { this.click(); }
         });
     });
 </script>
