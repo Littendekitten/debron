@@ -73,7 +73,7 @@
         }
 
         .logo {
-            max-width: clamp(100px, 22vw, 160px);
+            max-width: clamp(80px, 18vw, 160px);
             height: auto;
             margin-bottom: 1.5rem;
             display: inline-block;
@@ -84,8 +84,8 @@
             font-family: 'Cormorant Garamond', serif;
             color: var(--espresso);
             font-weight: 300;
-            letter-spacing: 4px;
-            font-size: clamp(1.6rem, 5vw, 3rem);
+            letter-spacing: clamp(2px, 1vw, 4px);
+            font-size: clamp(1.3rem, 4.5vw, 3rem);
             margin-bottom: 0.4rem;
             text-transform: uppercase;
         }
@@ -94,8 +94,8 @@
             font-family: 'Jost', sans-serif;
             font-weight: 300;
             color: var(--muted);
-            letter-spacing: 2px;
-            font-size: clamp(0.75rem, 2vw, 0.9rem);
+            letter-spacing: clamp(1px, 0.5vw, 2px);
+            font-size: clamp(0.7rem, 1.8vw, 0.9rem);
             text-transform: uppercase;
         }
 
@@ -104,27 +104,35 @@
             background: var(--espresso);
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: stretch;
             padding: 0;
             position: sticky;
             top: 0;
             z-index: 1000;
             box-shadow: 0 3px 20px rgba(58,46,39,0.25);
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
         }
 
+        nav::-webkit-scrollbar { display: none; }
+
         nav a {
-            display: inline-block;
-            padding: 1.1rem 2.2rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: clamp(0.85rem, 2.5vw, 1.1rem) clamp(1rem, 3vw, 2.2rem);
             cursor: pointer;
             color: rgba(255,255,255,0.65);
             font-weight: 400;
             text-transform: uppercase;
-            font-size: 0.78rem;
-            letter-spacing: 2px;
+            font-size: clamp(0.68rem, 1.8vw, 0.78rem);
+            letter-spacing: clamp(1px, 0.5vw, 2px);
             text-decoration: none;
             transition: color var(--transition), background var(--transition);
             position: relative;
             white-space: nowrap;
+            flex-shrink: 0;
         }
 
         nav a::after {
@@ -160,16 +168,16 @@
         .container {
             max-width: 1080px;
             margin: auto;
-            padding: clamp(2rem, 5vw, 4rem) clamp(1rem, 4vw, 2rem);
+            padding: clamp(1.5rem, 4vw, 4rem) clamp(1rem, 4vw, 2rem);
         }
 
         /* ─── Hero block ─── */
         .hero {
             background: var(--white);
-            padding: clamp(2.5rem, 6vw, 5rem) clamp(1.5rem, 4vw, 4rem);
+            padding: clamp(2rem, 5vw, 5rem) clamp(1.2rem, 4vw, 4rem);
             border-radius: var(--radius);
             text-align: center;
-            margin-bottom: 2.5rem;
+            margin-bottom: 2rem;
             box-shadow: var(--shadow-sm);
             border: 1px solid rgba(90,75,65,0.05);
             position: relative;
@@ -190,14 +198,14 @@
             font-family: 'Cormorant Garamond', serif;
             color: var(--espresso);
             font-weight: 400;
-            font-size: clamp(1.6rem, 4vw, 2.6rem);
+            font-size: clamp(1.4rem, 4vw, 2.6rem);
             margin-bottom: 0.8rem;
         }
 
         .hero p {
             color: var(--muted);
             font-weight: 300;
-            font-size: clamp(0.9rem, 2vw, 1.05rem);
+            font-size: clamp(0.88rem, 2vw, 1.05rem);
         }
 
         /* ─── Divider ─── */
@@ -222,14 +230,14 @@
         /* ─── Service Cards ─── */
         .services {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+            gap: 1.25rem;
+            margin-bottom: 2rem;
         }
 
         .service-card {
             background: var(--white);
-            padding: clamp(1.8rem, 4vw, 2.8rem) clamp(1.4rem, 3vw, 2rem);
+            padding: clamp(1.5rem, 4vw, 2.8rem) clamp(1.2rem, 3vw, 2rem);
             border-radius: var(--radius);
             text-align: center;
             transition: transform var(--transition), box-shadow var(--transition);
@@ -254,7 +262,7 @@
         .service-card:hover::before { transform: scaleX(1); }
 
         .service-icon {
-            font-size: 2rem;
+            font-size: clamp(1.6rem, 4vw, 2rem);
             margin-bottom: 1rem;
             display: block;
             filter: grayscale(0.2);
@@ -264,24 +272,24 @@
             font-family: 'Cormorant Garamond', serif;
             color: var(--espresso);
             font-weight: 600;
-            font-size: 1.25rem;
+            font-size: clamp(1.1rem, 2.5vw, 1.25rem);
             margin-bottom: 0.6rem;
             letter-spacing: 0.5px;
         }
 
         .service-card p {
             color: var(--muted);
-            font-size: 0.9rem;
+            font-size: clamp(0.85rem, 1.8vw, 0.9rem);
             font-weight: 300;
         }
 
         /* ─── Banner / CTA ─── */
         .banner {
             background: linear-gradient(135deg, var(--espresso) 0%, #6b5549 100%);
-            padding: clamp(2.5rem, 6vw, 4.5rem) clamp(1.5rem, 5vw, 4rem);
+            padding: clamp(2rem, 5vw, 4.5rem) clamp(1.2rem, 5vw, 4rem);
             text-align: center;
             border-radius: var(--radius);
-            margin-bottom: 2.5rem;
+            margin-bottom: 2rem;
             color: var(--white);
             position: relative;
             overflow: hidden;
@@ -301,7 +309,7 @@
             border: 1px solid rgba(255,255,255,0.2);
             padding: 0.3rem 1rem;
             border-radius: 30px;
-            font-size: 0.72rem;
+            font-size: clamp(0.65rem, 1.5vw, 0.72rem);
             letter-spacing: 2px;
             text-transform: uppercase;
             margin-bottom: 1.2rem;
@@ -311,7 +319,7 @@
         .banner h3 {
             font-family: 'Cormorant Garamond', serif;
             font-weight: 300;
-            font-size: clamp(1.6rem, 4vw, 2.4rem);
+            font-size: clamp(1.4rem, 4vw, 2.4rem);
             margin-bottom: 0.6rem;
             letter-spacing: 1px;
         }
@@ -319,7 +327,7 @@
         .banner p {
             color: rgba(255,255,255,0.75);
             font-weight: 300;
-            font-size: clamp(0.9rem, 2vw, 1rem);
+            font-size: clamp(0.88rem, 2vw, 1rem);
             margin-bottom: 0.2rem;
         }
 
@@ -328,13 +336,13 @@
             background: var(--white);
             color: var(--espresso);
             border: none;
-            padding: 0.95rem 2.4rem;
+            padding: clamp(0.8rem, 2vw, 0.95rem) clamp(1.6rem, 4vw, 2.4rem);
             cursor: pointer;
             border-radius: 8px;
             font-family: 'Jost', sans-serif;
             font-weight: 500;
             text-transform: uppercase;
-            font-size: 0.8rem;
+            font-size: clamp(0.72rem, 1.8vw, 0.8rem);
             letter-spacing: 2px;
             margin-top: 2rem;
             transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
@@ -347,13 +355,22 @@
             box-shadow: 0 8px 30px rgba(0,0,0,0.2);
         }
 
+        /* ─── Behandelingen pagina ─── */
+        #behandelingen .hero {
+            margin-bottom: 2rem;
+        }
+
+        #behandelingen .hero p {
+            font-size: clamp(0.88rem, 2vw, 1.05rem);
+        }
+
         /* ─── Pakket pagina hero ─── */
         #pakket .hero {
             text-align: center;
         }
 
         #pakket .hero h2 {
-            font-size: clamp(1.6rem, 4vw, 2.4rem);
+            font-size: clamp(1.4rem, 4vw, 2.4rem);
         }
 
         .seizoen-badge {
@@ -364,7 +381,7 @@
             border: 1px solid var(--sand);
             padding: 0.35rem 1.1rem;
             border-radius: 30px;
-            font-size: 0.78rem;
+            font-size: clamp(0.68rem, 1.5vw, 0.78rem);
             letter-spacing: 1.5px;
             text-transform: uppercase;
             color: var(--mocha);
@@ -406,17 +423,36 @@
         }
 
         /* ─── Mobile ─── */
-        @media (max-width: 480px) {
-            nav a { padding: 1rem 1.3rem; font-size: 0.73rem; letter-spacing: 1.5px; }
+        @media (max-width: 600px) {
+            nav {
+                justify-content: flex-start;
+            }
+            nav a {
+                padding: 0.9rem 1.1rem;
+                font-size: 0.7rem;
+                letter-spacing: 1.2px;
+            }
             .services { grid-template-columns: 1fr; }
             .banner { border-radius: 12px; }
             .hero { border-radius: 12px; }
             .service-card { border-radius: 12px; }
+            .credit {
+                bottom: 12px;
+                right: 12px;
+                font-size: 0.65rem;
+                padding: 6px 11px;
+            }
         }
 
-        @media (max-width: 360px) {
-            nav { justify-content: space-around; }
-            nav a { padding: 0.9rem 0.8rem; font-size: 0.7rem; letter-spacing: 1px; }
+        @media (max-width: 380px) {
+            nav a {
+                padding: 0.85rem 0.9rem;
+                font-size: 0.66rem;
+                letter-spacing: 0.8px;
+            }
+            header h1 {
+                letter-spacing: 1.5px;
+            }
         }
     </style>
 </head>
@@ -424,12 +460,13 @@
 
 <header>
     <img src="logo.png" alt="Logo Schoonheidssalon De Bron" class="logo">
-    <h1>Schoonheidssalon De Bron</h1>
+    <h1>Welkmon bij Schoonheidssalon De Bron</h1>
     <p>Even helemaal tot rust komen</p>
 </header>
 
 <nav id="mainNav">
     <a onclick="toon('home')" id="link-home" class="active-link" role="button" tabindex="0">Home</a>
+    <a onclick="toon('behandelingen')" id="link-behandelingen" role="button" tabindex="0">Behandelingen</a>
     <a onclick="toon('pakket')" id="link-pakket" role="button" tabindex="0">Seizoenspakket</a>
 </nav>
 
@@ -442,6 +479,27 @@
             <div class="divider"><span>✦</span></div>
             <p>Luxe huidverzorging en persoonlijke ontspanning op maat.<br>
             Kom tot rust en laat uw huid stralen.</p>
+        </section>
+
+        <div class="banner">
+            <div class="banner-label">✦ Exclusief aanbod</div>
+            <h3 id="bannerTitel"></h3>
+            <p id="bannerText"></p>
+            <button class="knop" onclick="toon('pakket')">Bekijk pakket</button>
+        </div>
+
+    </div>
+</main>
+
+<!-- BEHANDELINGEN -->
+<div id="behandelingen" class="pagina">
+    <div class="container">
+
+        <section class="hero">
+            <h2>Onze Behandelingen</h2>
+            <div class="divider"><span>✦</span></div>
+            <p>Ontdek ons volledige aanbod aan luxe behandelingen,<br>
+            zorgvuldig samengesteld voor uw huid en welzijn.</p>
         </section>
 
         <section class="services">
@@ -462,15 +520,8 @@
             </div>
         </section>
 
-        <div class="banner">
-            <div class="banner-label">✦ Exclusief aanbod</div>
-            <h3 id="bannerTitel"></h3>
-            <p id="bannerText"></p>
-            <button class="knop" onclick="toon('pakket')">Bekijk pakket</button>
-        </div>
-
     </div>
-</main>
+</div>
 
 <!-- PAKKET -->
 <div id="pakket" class="pagina">
@@ -521,24 +572,39 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Seizoen logica
-    const m = new Date().getMonth() + 1;
-    let seizoen = '', titel = '', tekst = '', active = '';
+    // Seizoen & jaar logica
+    const now    = new Date();
+    const m      = now.getMonth() + 1;
+    const jaar   = now.getFullYear();
+
+    let seizoen = '', pakketTitel = '', tekst = '', active = '';
 
     if (m >= 3 && m <= 5) {
-        seizoen = 'Lente';   titel = 'Lente Seizoenspakket';  tekst = 'Frisse glow & herstart van uw huid'; active = 'lente';
+        seizoen     = 'Lente';
+        pakketTitel = 'Lente Pakket ' + jaar;
+        tekst       = 'Frisse glow & herstart van uw huid';
+        active      = 'lente';
     } else if (m >= 6 && m <= 8) {
-        seizoen = 'Zomer';   titel = 'Zomer Seizoenspakket';  tekst = 'Optimale hydratatie en bescherming';  active = 'zomer';
+        seizoen     = 'Zomer';
+        pakketTitel = 'Zomer Pakket ' + jaar;
+        tekst       = 'Optimale hydratatie en bescherming';
+        active      = 'zomer';
     } else if (m >= 9 && m <= 11) {
-        seizoen = 'Herfst';  titel = 'Herfst Seizoenspakket'; tekst = 'Herstel en intensieve voeding';        active = 'herfst';
+        seizoen     = 'Herfst';
+        pakketTitel = 'Herfst Pakket ' + jaar;
+        tekst       = 'Herstel en intensieve voeding';
+        active      = 'herfst';
     } else {
-        seizoen = 'Winter';  titel = 'Winter Seizoenspakket'; tekst = 'Diepe voeding en koude bescherming';  active = 'winter';
+        seizoen     = 'Winter';
+        pakketTitel = 'Winter Pakket ' + jaar;
+        tekst       = 'Diepe voeding en koude bescherming';
+        active      = 'winter';
     }
 
-    document.getElementById('bannerTitel').innerText  = seizoen + ' 2026 Pakket';
+    document.getElementById('bannerTitel').innerText  = pakketTitel;
     document.getElementById('bannerText').innerText   = tekst;
-    document.getElementById('titel').innerText        = titel;
-    document.getElementById('seizoenLabel').innerText = seizoen + ' 2026';
+    document.getElementById('titel').innerText        = pakketTitel;
+    document.getElementById('seizoenLabel').innerText = seizoen + ' ' + jaar;
     document.getElementById(active).style.display     = 'block';
 
     document.querySelectorAll('nav a').forEach(link => {
