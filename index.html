@@ -389,37 +389,256 @@
             margin-bottom: 1.2rem;
         }
 
+        /* ─── Section heading ─── */
+        .section-heading { text-align: center; margin-bottom: 1.8rem; }
+        .section-heading h3 {
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--espresso);
+            font-weight: 400;
+            font-size: clamp(1.3rem, 3.5vw, 1.9rem);
+        }
+
+        /* ─── Testimonials ─── */
+        .testimonials { margin-bottom: 2rem; }
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+            gap: 1.25rem;
+        }
+        .testimonial-card {
+            background: var(--white);
+            padding: clamp(1.4rem, 3.5vw, 2rem);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(90,75,65,0.05);
+        }
+        .stars { color: var(--mocha); letter-spacing: 2px; margin-bottom: 0.8rem; font-size: 0.9rem; }
+        .testimonial-card p {
+            color: var(--text);
+            font-weight: 300;
+            font-size: 0.92rem;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+        .testimonial-naam {
+            display: block;
+            color: var(--muted);
+            font-size: 0.78rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .review-fallback {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 110px;
+            text-align: center;
+        }
+        .review-fallback p {
+            color: var(--muted);
+            font-style: normal;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            margin-bottom: 0;
+        }
+
+        /* ─── Info strip ─── */
+        .info-strip {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .info-item {
+            background: var(--warm);
+            padding: 1.4rem 1.2rem;
+            border-radius: var(--radius);
+            text-align: center;
+        }
+        .info-label {
+            display: block;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            color: var(--espresso);
+            font-size: 1.05rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.5px;
+        }
+        .info-item p { color: var(--mocha); font-size: 0.85rem; font-weight: 300; }
+
+        /* ─── Pakket teaser on behandelingen page ─── */
+        .pakket-teaser {
+            text-align: center;
+            padding: 2rem 1rem;
+        }
+        .pakket-teaser p {
+            color: var(--muted);
+            font-weight: 300;
+            margin-bottom: 1.2rem;
+            font-size: 0.95rem;
+        }
+        .knop-outline {
+            background: transparent;
+            color: var(--espresso);
+            border: 1px solid var(--mocha);
+            box-shadow: none;
+            margin-top: 0;
+        }
+        .knop-outline:hover {
+            background: var(--espresso);
+            color: var(--white);
+            box-shadow: 0 8px 24px rgba(58,46,39,0.18);
+        }
+
+        /* ─── About page ─── */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 1.5rem;
+            align-items: stretch;
+        }
+        .about-tekst {
+            background: var(--white);
+            padding: clamp(1.6rem, 4vw, 2.6rem);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(90,75,65,0.05);
+        }
+        .about-tekst h3 {
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--espresso);
+            font-weight: 600;
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+        }
+        .about-tekst p { color: var(--text); font-weight: 300; font-size: 0.92rem; margin-bottom: 0.9rem; }
+        .about-tekst p:last-child { margin-bottom: 0; }
+        .about-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .stat {
+            background: var(--espresso);
+            color: var(--white);
+            border-radius: var(--radius);
+            padding: 1.4rem;
+            text-align: center;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .stat-getal {
+            display: block;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.8rem, 4vw, 2.4rem);
+            font-weight: 600;
+        }
+        .stat-label {
+            display: block;
+            font-size: 0.7rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.7);
+            margin-top: 0.3rem;
+        }
+        @media (max-width: 700px) {
+            .about-grid { grid-template-columns: 1fr; }
+            .about-stats { flex-direction: row; }
+        }
+        @media (max-width: 480px) {
+            .about-stats { flex-direction: column; }
+        }
+
+        /* ─── Contact page ─── */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+            gap: 1.25rem;
+        }
+        .contact-card {
+            background: var(--white);
+            padding: clamp(1.5rem, 4vw, 2.4rem) clamp(1.2rem, 3vw, 1.8rem);
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(90,75,65,0.05);
+        }
+        .contact-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--espresso);
+            font-weight: 600;
+            font-size: 1.15rem;
+            margin-bottom: 0.5rem;
+        }
+        .contact-card p { color: var(--muted); font-size: 0.88rem; font-weight: 300; }
+
+        .service-icon svg { width: 1.9rem; height: 1.9rem; color: var(--mocha); }
+
+        /* ─── Footer ─── */
+        .site-footer {
+            background: var(--espresso);
+            color: rgba(255,255,255,0.75);
+            padding: clamp(2.5rem, 5vw, 3.5rem) clamp(1.2rem, 4vw, 2rem) 1.5rem;
+            margin-top: 1rem;
+        }
+        .footer-inner {
+            max-width: 1080px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.3fr 1fr 1fr 1fr;
+            gap: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .footer-inner--simple {
+            grid-template-columns: 1fr;
+            text-align: center;
+        }
+        .footer-brand h4 {
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--white);
+            font-weight: 500;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            margin-bottom: 0.4rem;
+        }
+        .footer-brand p { font-size: 0.82rem; font-weight: 300; color: rgba(255,255,255,0.55); }
+        .footer-heading {
+            display: block;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-size: 0.7rem;
+            color: var(--sand);
+            margin-bottom: 0.6rem;
+        }
+        .footer-col p { font-size: 0.85rem; font-weight: 300; line-height: 1.6; }
+        .footer-bottom {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding-top: 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            font-size: 0.72rem;
+            color: rgba(255,255,255,0.45);
+        }
+        .footer-bottom a {
+            color: rgba(255,255,255,0.45);
+            text-decoration: none;
+        }
+        .footer-bottom a:hover { color: var(--white); }
+        @media (max-width: 700px) {
+            .footer-inner { grid-template-columns: 1fr 1fr; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+        }
+
         /* ─── Stripe ─── */
         .stripe-box {
             margin-top: 2.5rem;
             min-height: 420px;
-        }
-
-        /* ─── Footer credit ─── */
-        .credit {
-            position: fixed;
-            bottom: 16px;
-            right: 16px;
-            font-size: 0.72rem;
-            color: var(--muted);
-            background: rgba(255,255,255,0.85);
-            padding: 7px 14px;
-            border-radius: 30px;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            text-decoration: none;
-            border: 1px solid rgba(90,75,65,0.1);
-            transition: all var(--transition);
-            z-index: 2000;
-            letter-spacing: 0.5px;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .credit:hover {
-            color: var(--espresso);
-            background: var(--white);
-            box-shadow: var(--shadow-md);
-            transform: translateY(-1px);
         }
 
         /* ─── Mobile ─── */
@@ -436,12 +655,6 @@
             .banner { border-radius: 12px; }
             .hero { border-radius: 12px; }
             .service-card { border-radius: 12px; }
-            .credit {
-                bottom: 12px;
-                right: 12px;
-                font-size: 0.65rem;
-                padding: 6px 11px;
-            }
         }
 
         @media (max-width: 380px) {
@@ -459,7 +672,7 @@
 <body>
 
 <header>
-    <img src="logo.png" alt="Logo Schoonheidssalon De Bron" class="logo">
+    <img src="logo.png" alt="Logo Schoonheidssalon De Bron" class="logo" onerror="this.style.display='none'">
     <h1>Schoonheidssalon De Bron</h1>
     <p>Even helemaal tot rust komen</p>
 </header>
@@ -468,6 +681,8 @@
     <a onclick="toon('home')" id="link-home" class="active-link" role="button" tabindex="0">Home</a>
     <a onclick="toon('behandelingen')" id="link-behandelingen" role="button" tabindex="0">Behandelingen</a>
     <a onclick="toon('pakket')" id="link-pakket" role="button" tabindex="0">Seizoenspakket</a>
+    <a onclick="toon('overons')" id="link-overons" role="button" tabindex="0">Over Ons</a>
+    <a onclick="toon('contact')" id="link-contact" role="button" tabindex="0">Contact</a>
 </nav>
 
 <!-- HOME -->
@@ -488,6 +703,33 @@
             <button class="knop" onclick="toon('pakket')">Bekijk pakket</button>
         </div>
 
+        <section class="testimonials">
+            <div class="section-heading">
+                <div class="divider"><span>✦</span></div>
+                <h3>Wat klanten zeggen</h3>
+            </div>
+            <div class="testimonial-grid" id="reviewsGrid">
+                <div class="testimonial-card review-fallback"><p>Reviews niet beschikbaar</p></div>
+                <div class="testimonial-card review-fallback"><p>Reviews niet beschikbaar</p></div>
+                <div class="testimonial-card review-fallback"><p>Reviews niet beschikbaar</p></div>
+            </div>
+        </section>
+
+        <section class="info-strip">
+            <div class="info-item">
+                <span class="info-label">Openingstijden</span>
+                <p>Di – Vr&nbsp;&nbsp;09:00 – 18:00<br>Za&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;09:00 – 16:00</p>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Locatie</span>
+                <p>Nederlandvogelweg 56<br>1826 HB, Alkmaar</p>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Contact</span>
+                <p>kitacatservice@gmail.com</p>
+            </div>
+        </section>
+
     </div>
 </main>
 
@@ -504,19 +746,96 @@
 
         <section class="services">
             <div class="service-card">
-                <span class="service-icon">🌸</span>
+                <span class="service-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="4"/><circle cx="12" cy="4" r="1.6"/><circle cx="12" cy="20" r="1.6"/><circle cx="4" cy="12" r="1.6"/><circle cx="20" cy="12" r="1.6"/><circle cx="6.5" cy="6.5" r="1.6"/><circle cx="17.5" cy="17.5" r="1.6"/><circle cx="6.5" cy="17.5" r="1.6"/><circle cx="17.5" cy="6.5" r="1.6"/></svg>
+                </span>
                 <h3>Gezichtsbehandeling</h3>
                 <p>Volledige reiniging en verzorging met ontspannende massage voor een stralende huid.</p>
             </div>
             <div class="service-card">
-                <span class="service-icon">🔬</span>
+                <span class="service-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M9 3h6v4a5 5 0 0 1-2 4v2a5 5 0 0 1 2 4v4H9v-4a5 5 0 0 1 2-4v-2a5 5 0 0 1-2-4V3z"/></svg>
+                </span>
                 <h3>Huidanalyse</h3>
                 <p>Persoonlijk en deskundig advies afgestemd op uw unieke huidtype en wensen.</p>
             </div>
             <div class="service-card">
-                <span class="service-icon">🕯️</span>
+                <span class="service-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 2c2 3 3.2 5.3 3.2 7.6A3.2 3.2 0 0 1 12 12.8a3.2 3.2 0 0 1-3.2-3.2C8.8 7.3 10 5 12 2z"/><path d="M6 21h12M9 21c0-3 1.3-5 3-6 1.7 1 3 3 3 6"/></svg>
+                </span>
                 <h3>Wellness</h3>
                 <p>Volledige ontspanning voor lichaam en geest in een rustgevende omgeving.</p>
+            </div>
+        </section>
+
+        <div class="pakket-teaser">
+            <p>Benieuwd naar onze prijzen en behandelpakketten?</p>
+            <button class="knop knop-outline" onclick="toon('pakket')">Bekijk het seizoenspakket</button>
+        </div>
+
+    </div>
+</div>
+
+<!-- OVER ONS -->
+<div id="overons" class="pagina">
+    <div class="container">
+
+        <section class="hero">
+            <h2>Over Schoonheidssalon De Bron</h2>
+            <div class="divider"><span>✦</span></div>
+            <p>Vakmanschap, persoonlijke aandacht en een omgeving waarin u volledig tot rust komt.</p>
+        </section>
+
+        <section class="about-grid">
+            <div class="about-tekst">
+                <h3>Onze filosofie</h3>
+                <p>Schoonheidssalon De Bron is opgericht vanuit de overtuiging dat goede huidverzorging begint bij rust en aandacht. In onze salon nemen we de tijd om naar uw huid en wensen te luisteren, zodat elke behandeling volledig op maat is.</p>
+                <p>Met jarenlange ervaring en oog voor de nieuwste technieken zorgen wij ervoor dat u niet alleen met een stralende huid, maar ook ontspannen de deur uitloopt.</p>
+            </div>
+            <div class="about-stats">
+                <div class="stat">
+                    <span class="stat-getal">15+</span>
+                    <span class="stat-label">Jaar ervaring</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-getal">1000+</span>
+                    <span class="stat-label">Tevreden klanten</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-getal">100%</span>
+                    <span class="stat-label">Natuurlijke producten</span>
+                </div>
+            </div>
+        </section>
+
+    </div>
+</div>
+
+<!-- CONTACT -->
+<div id="contact" class="pagina">
+    <div class="container">
+
+        <section class="hero">
+            <h2>Contact &amp; Afspraak</h2>
+            <div class="divider"><span>✦</span></div>
+            <p>Maak eenvoudig een afspraak of neem contact met ons op.</p>
+        </section>
+
+        <section class="contact-grid">
+            <div class="contact-card">
+                <span class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
+                <h3>Adres</h3>
+                <p>Nederlandvogelweg 56<br>1826 HB, Alkmaar</p>
+            </div>
+            <div class="contact-card">
+                <span class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>
+                <h3>E-mail</h3>
+                <p>kitacatservice@gmail.com</p>
+            </div>
+            <div class="contact-card">
+                <span class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></span>
+                <h3>Openingstijden</h3>
+                <p>Di – Vr&nbsp;&nbsp;09:00 – 18:00<br>Za&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;09:00 – 16:00<br>Zo &amp; Ma gesloten</p>
             </div>
         </section>
 
@@ -559,11 +878,55 @@
     </div>
 </div>
 
-<a class="credit" href="https://littendekitten.github.io/Portfolio" target="_blank" rel="noopener">
-    Website door Sven Hildering
-</a>
+<footer class="site-footer">
+    <div class="footer-inner footer-inner--simple">
+        <div class="footer-brand">
+            <h4>Schoonheidssalon De Bron</h4>
+            <p>Even helemaal tot rust komen</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <span>© <span id="footerJaar"></span> Schoonheidssalon De Bron</span>
+        <a href="https://littendekitten.github.io/Portfolio" target="_blank" rel="noopener">Website door Sven Hildering</a>
+    </div>
+</footer>
 
 <script>
+    // ─── Google Business Profile reviews ───
+    // Vul hieronder je Google Place ID en een Places API-key in (met domein-restrictie)
+    // om hier automatisch de 3 meest recente Google-reviews te tonen.
+    // Zonder deze gegevens toont de site netjes "Reviews niet beschikbaar".
+    const GOOGLE_PLACE_ID = "";   // bv. "ChIJ..."
+    const GOOGLE_API_KEY  = "";   // bv. "AIza..."
+
+    async function laadGoogleReviews() {
+        const grid = document.getElementById('reviewsGrid');
+        if (!GOOGLE_PLACE_ID || !GOOGLE_API_KEY) return; // laat fallback staan
+
+        try {
+            const res = await fetch(
+                `https://places.googleapis.com/v1/places/${GOOGLE_PLACE_ID}?fields=reviews`,
+                { headers: { 'X-Goog-Api-Key': GOOGLE_API_KEY } }
+            );
+            if (!res.ok) throw new Error('Places API fout');
+            const data = await res.json();
+            const reviews = (data.reviews || []).slice(0, 3);
+            if (reviews.length === 0) return; // laat fallback staan
+
+            grid.innerHTML = reviews.map(r => `
+                <div class="testimonial-card">
+                    <div class="stars">${'★'.repeat(r.rating || 5)}${'☆'.repeat(5 - (r.rating || 5))}</div>
+                    <p>"${(r.text?.text || '').replace(/</g,'&lt;')}"</p>
+                    <span class="testimonial-naam">— ${(r.authorAttribution?.displayName || 'Google-gebruiker').replace(/</g,'&lt;')}</span>
+                </div>
+            `).join('');
+        } catch (e) {
+            // netwerk- of configuratiefout: fallback blijft gewoon staan
+            console.warn('Google reviews konden niet geladen worden:', e);
+        }
+    }
+    laadGoogleReviews();
+
     function toon(id) {
         document.querySelectorAll('.pagina').forEach(p => p.classList.remove('actief'));
         document.getElementById(id).classList.add('actief');
@@ -610,7 +973,10 @@
     document.querySelectorAll('nav a').forEach(link => {
         link.addEventListener('keypress', e => { if (e.key === 'Enter') link.click(); });
     });
+
+    document.getElementById('footerJaar').innerText = jaar;
 </script>
 
 </body>
 </html>
+
